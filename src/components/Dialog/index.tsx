@@ -1,8 +1,11 @@
 import { FC, ReactNode, useState, useEffect } from 'react'
-import { Portal } from '@/utils/portal'
-import { useScrollLock } from '@/utils/useScrollLock'
+
 import { DialogOverlay } from './DialogOverlay'
 import { DialogContent } from './DialogContent'
+import { DIALOG_TRANSITION_DURATION } from './constants'
+
+import { useScrollLock } from '@/utils/useScrollLock'
+import { Portal } from '@/utils/portal'
 import './DialogRoot.css'
 
 export interface DialogProps {
@@ -41,7 +44,7 @@ export const Dialog: FC<DialogProps> = ({
       setIsVisible(false)
       const timer = setTimeout(() => {
         setShouldRender(false)
-      }, 200)
+      }, DIALOG_TRANSITION_DURATION)
       return () => clearTimeout(timer)
     }
   }, [open])

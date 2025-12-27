@@ -1,8 +1,11 @@
 import { FC, ReactNode, useRef, useState, useEffect } from 'react'
-import { Portal } from '@/utils/portal'
-import { useScrollLock } from '@/utils/useScrollLock'
+
 import { DialogOverlay } from './DialogOverlay'
 import { DialogContent } from './DialogContent'
+import { DIALOG_TRANSITION_DURATION } from './constants'
+
+import { useScrollLock } from '@/utils/useScrollLock'
+import { Portal } from '@/utils/portal'
 import './DialogRoot.css'
 
 interface DialogRootProps {
@@ -44,7 +47,7 @@ export const DialogRoot: FC<DialogRootProps> = ({
       // 애니메이션 완료 후 DOM에서 제거
       const timer = setTimeout(() => {
         setShouldRender(false)
-      }, 200) // transition duration과 동일
+      }, DIALOG_TRANSITION_DURATION)
       return () => clearTimeout(timer)
     }
   }, [open])
