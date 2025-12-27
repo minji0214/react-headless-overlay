@@ -1,8 +1,9 @@
-import { FC, useState } from 'react'
+import { FC, useState, useMemo } from 'react'
 
-import { DialogProvider, DialogRenderer, dialog, useDialog, Dialog } from '../index'
+import { DialogProvider, DialogRenderer, dialog as dialogFunction, useDialog, Dialog } from '../index'
 import { I18nProvider, useI18n } from './useI18n'
 import { ExampleCodeSnippets } from './ExamplesCodeSnippets'
+import { CodeBlock } from './CodeBlock'
 import './styles.css'
 
 const App: FC = () => {
@@ -61,7 +62,7 @@ const Hero: FC = () => {
   }
 
   const openGetStartedDialog = () => {
-    dialog({
+    dialogFunction({
       content: (
         <div className="demo-content-inner">
           <h2 style={{ marginTop: 0 }}>🚀 {t.quickStart.getStarted.title}</h2>
@@ -131,56 +132,59 @@ dialog({
 const Features: FC = () => {
   const { t } = useI18n()
 
-  const features = [
-    {
-      icon: '🎨',
-      title: t.features.headless.title,
-      description: t.features.headless.description,
-    },
-    {
-      icon: '⚡',
-      title: t.features.ssr.title,
-      description: t.features.ssr.description,
-    },
-    {
-      icon: '📚',
-      title: t.features.zIndex.title,
-      description: t.features.zIndex.description,
-    },
-    {
-      icon: '🌐',
-      title: t.features.global.title,
-      description: t.features.global.description,
-    },
-    {
-      icon: '🔒',
-      title: t.features.scrollLock.title,
-      description: t.features.scrollLock.description,
-    },
-    {
-      icon: '⌨️',
-      title: t.features.keyboard.title,
-      description: t.features.keyboard.description,
-    },
-    {
-      icon: '♿',
-      title: t.features.accessibility.title,
-      description: t.features.accessibility.description,
-    },
-    {
-      icon: '📦',
-      title: t.features.zeroDeps.title,
-      description: t.features.zeroDeps.description,
-    },
-  ]
+  const features = useMemo(
+    () => [
+      {
+        icon: '🎨',
+        title: t.features.headless.title,
+        description: t.features.headless.description,
+      },
+      {
+        icon: '⚡',
+        title: t.features.ssr.title,
+        description: t.features.ssr.description,
+      },
+      {
+        icon: '📚',
+        title: t.features.zIndex.title,
+        description: t.features.zIndex.description,
+      },
+      {
+        icon: '🌐',
+        title: t.features.global.title,
+        description: t.features.global.description,
+      },
+      {
+        icon: '🔒',
+        title: t.features.scrollLock.title,
+        description: t.features.scrollLock.description,
+      },
+      {
+        icon: '⌨️',
+        title: t.features.keyboard.title,
+        description: t.features.keyboard.description,
+      },
+      {
+        icon: '♿',
+        title: t.features.accessibility.title,
+        description: t.features.accessibility.description,
+      },
+      {
+        icon: '📦',
+        title: t.features.zeroDeps.title,
+        description: t.features.zeroDeps.description,
+      },
+    ],
+    [t],
+  )
 
   return (
     <section className="features" id="features">
       <div className="section-container">
         <h2 className="section-title">{t.features.title}</h2>
         <div className="features-grid">
-          {features.map((feature, index) => (
-            <div key={index} className="feature-card">
+          {features.map((feature) => (
+            <div key={feature.title} className="feature-card">
               <div className="feature-icon">{feature.icon}</div>
               <h3 className="feature-title">{feature.title}</h3>
               <p className="feature-description">{feature.description}</p>
@@ -286,82 +290,85 @@ const Examples: FC = () => {
     setCodeDialogOpen(true)
   }
 
-  const examples = [
-    {
-      title: t.examples.basic.title,
-      description: t.examples.basic.description,
-      type: 'basic' as const,
-      action: () => {
-        dialog({
-          content: (
-            <div className="demo-content-inner">
-              <h2 style={{ marginTop: 0 }}>{t.examples.basic.content}</h2>
-              <p>{t.examples.basic.text}</p>
-            </div>
-          ),
-          overlayClassName: 'demo-overlay',
-          contentClassName: 'demo-content',
-        })
+  const examples = useMemo(
+    () => [
+      {
+        title: t.examples.basic.title,
+        description: t.examples.basic.description,
+        type: 'basic' as const,
+        action: () => {
+          dialogFunction({
+            content: (
+              <div className="demo-content-inner">
+                <h2 style={{ marginTop: 0 }}>{t.examples.basic.content}</h2>
+                <p>{t.examples.basic.text}</p>
+              </div>
+            ),
+            overlayClassName: 'demo-overlay',
+            contentClassName: 'demo-content',
+          })
+        },
       },
-    },
-    {
-      title: t.examples.hook.title,
-      description: t.examples.hook.description,
-      type: 'hook' as const,
-      action: () => {
-        dialogHook({
-          content: (
-            <div className="demo-content-inner">
-              <h2 style={{ marginTop: 0 }}>{t.examples.hook.content}</h2>
-              <p>{t.examples.hook.text}</p>
-            </div>
-          ),
-          overlayClassName: 'demo-overlay',
-          contentClassName: 'demo-content',
-        })
+      {
+        title: t.examples.hook.title,
+        description: t.examples.hook.description,
+        type: 'hook' as const,
+        action: () => {
+          dialogHook({
+            content: (
+              <div className="demo-content-inner">
+                <h2 style={{ marginTop: 0 }}>{t.examples.hook.content}</h2>
+                <p>{t.examples.hook.text}</p>
+              </div>
+            ),
+            overlayClassName: 'demo-overlay',
+            contentClassName: 'demo-content',
+          })
+        },
       },
-    },
-    {
-      title: t.examples.nested.title,
-      description: t.examples.nested.description,
-      type: 'nested' as const,
-      action: () => {
-        dialogHook({
-          content: (
-            <div className="demo-content-inner">
-              <h2 style={{ marginTop: 0 }}>{t.examples.nested.content}</h2>
-              <p>{t.examples.nested.text}</p>
-              <button
-                className="demo-btn-inline"
-                onClick={() =>
-                  dialogHook({
-                    content: (
-                      <div className="demo-content-inner">
-                        <h3 style={{ marginTop: 0 }}>{t.examples.nested.nestedContent}</h3>
-                        <p>{t.examples.nested.nestedText}</p>
-                      </div>
-                    ),
-                    overlayClassName: 'demo-overlay',
-                    contentClassName: 'demo-content',
-                  })
-                }
-              >
-                {t.examples.nested.button}
-              </button>
-            </div>
-          ),
-          overlayClassName: 'demo-overlay',
-          contentClassName: 'demo-content',
-        })
+      {
+        title: t.examples.nested.title,
+        description: t.examples.nested.description,
+        type: 'nested' as const,
+        action: () => {
+          dialogHook({
+            content: (
+              <div className="demo-content-inner">
+                <h2 style={{ marginTop: 0 }}>{t.examples.nested.content}</h2>
+                <p>{t.examples.nested.text}</p>
+                <button
+                  className="demo-btn-inline"
+                  onClick={() =>
+                    dialogHook({
+                      content: (
+                        <div className="demo-content-inner">
+                          <h3 style={{ marginTop: 0 }}>{t.examples.nested.nestedContent}</h3>
+                          <p>{t.examples.nested.nestedText}</p>
+                        </div>
+                      ),
+                      overlayClassName: 'demo-overlay',
+                      contentClassName: 'demo-content',
+                    })
+                  }
+                >
+                  {t.examples.nested.button}
+                </button>
+              </div>
+            ),
+            overlayClassName: 'demo-overlay',
+            contentClassName: 'demo-content',
+          })
+        },
       },
-    },
-    {
-      title: t.examples.standalone.title,
-      description: t.examples.standalone.description,
-      type: 'standalone' as const,
-      action: () => setStandaloneOpen(true),
-    },
-  ]
+      {
+        title: t.examples.standalone.title,
+        description: t.examples.standalone.description,
+        type: 'standalone' as const,
+        action: () => setStandaloneOpen(true),
+      },
+    ],
+    [t, dialogHook, setStandaloneOpen],
+  )
 
   return (
     <section className="examples" id="examples">
@@ -369,8 +376,8 @@ const Examples: FC = () => {
         <h2 className="section-title">{t.examples.title}</h2>
         <p className="section-description">{t.examples.description}</p>
         <div className="examples-grid">
-          {examples.map((example, index) => (
-            <div key={index} className="example-card">
+          {examples.map((example) => (
+            <div key={example.title} className="example-card">
               <h3 className="example-title">{example.title}</h3>
               <p className="example-description">{example.description}</p>
               <div style={{ display: 'flex', gap: '8px', flexDirection: 'column' }}>
@@ -408,7 +415,7 @@ const Examples: FC = () => {
         >
           <div className="demo-content-inner">
             <h2 style={{ marginTop: 0, marginBottom: '24px' }}>{t.examples[codeDialogType].title}</h2>
-            <ExampleCodeSnippets type={codeDialogType} t={t} />
+            <ExampleCodeSnippets type={codeDialogType} />
           </div>
         </Dialog>
       </div>
@@ -488,34 +495,5 @@ const Footer: FC = () => {
     </footer>
   )
 }
-
-const CodeBlock: FC<{ children: string; language?: string }> = ({ children, language = 'bash' }) => {
-  const { t } = useI18n()
-  const [copied, setCopied] = useState(false)
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(children)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    } catch (err) {
-      console.error('Failed to copy:', err)
-    }
-  }
-
-  return (
-    <div className="code-block-wrapper">
-      <pre className="code-block">
-        <code className={`language-${language}`}>{children}</code>
-      </pre>
-      <button className="code-copy-btn" onClick={handleCopy} aria-label={t.hero.copy}>
-        {copied ? t.hero.copied : t.hero.copy}
-      </button>
-    </div>
-  )
-}
-
-// Export CodeBlock for use in other files
-export { CodeBlock }
 
 export { App }

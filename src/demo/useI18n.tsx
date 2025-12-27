@@ -12,14 +12,8 @@ const I18nContext = createContext<I18nContextValue | null>(null)
 
 const LANGUAGE_STORAGE_KEY = 'overlay-kit-language'
 
-const getDefaultLanguage = (): Language => {
-  if (typeof window === 'undefined') return 'en'
-  const stored = localStorage.getItem(LANGUAGE_STORAGE_KEY) as Language | null
-  return stored && (stored === 'en' || stored === 'ko') ? stored : 'en'
-}
-
 export const I18nProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>(getDefaultLanguage)
+  const [language, setLanguageState] = useState<Language>('en')
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang)

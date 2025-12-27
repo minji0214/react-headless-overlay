@@ -16,9 +16,9 @@ interface DialogProviderProps {
 
 /**
  * 다이얼로그 컨텍스트를 제공하는 Provider 컴포넌트
- * 
+ *
  * 앱의 최상위 레벨에 배치하여 dialog() 함수와 useDialog 훅을 사용할 수 있게 합니다.
- * 
+ *
  * @example
  * ```tsx
  * function App() {

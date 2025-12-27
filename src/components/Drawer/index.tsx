@@ -16,13 +16,13 @@ export interface DrawerProps {
 
 /**
  * Drawer 컴포넌트
- * 
+ *
  * 화면 가장자리에서 슬라이드되어 나타나는 드로어 컴포넌트입니다.
- * 
+ *
  * @example
  * ```tsx
  * const [open, setOpen] = useState(false)
- * 
+ *
  * return (
  *   <>
  *     <button onClick={() => setOpen(true)}>Open Drawer</button>

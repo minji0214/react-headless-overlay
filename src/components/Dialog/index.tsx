@@ -33,14 +33,14 @@ export interface DialogProps {
 
 /**
  * Dialog 컴포넌트
- * 
+ *
  * 다이얼로그를 표시하기 위한 컴포넌트입니다. Portal을 사용하여 body에 마운트되며,
  * 접근성 기능(키보드 네비게이션, 포커스 트랩)을 포함합니다.
- * 
+ *
  * @example
  * ```tsx
  * const [open, setOpen] = useState(false)
- * 
+ *
  * return (
  *   <>
  *     <button onClick={() => setOpen(true)}>Open Dialog</button>

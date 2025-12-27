@@ -1,47 +1,13 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 
-// CodeBlock component (inline version)
-const CodeBlock: FC<{
-  children: string
-  language?: string
-  t?: { hero?: { copy?: string; copied?: string } }
-}> = ({ children, language = 'bash', t }) => {
-  const [copied, setCopied] = useState(false)
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(children)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    } catch (err) {
-      console.error('Failed to copy:', err)
-    }
-  }
-
-  const copyText = t?.hero?.copy || 'Copy'
-  const copiedText = t?.hero?.copied || 'Copied!'
-
-  return (
-    <div className="code-block-wrapper">
-      <pre className="code-block">
-        <code className={`language-${language}`}>{children}</code>
-      </pre>
-      <button className="code-copy-btn" onClick={handleCopy} aria-label={copyText}>
-        {copied ? copiedText : copyText}
-      </button>
-    </div>
-  )
-}
+import { CodeBlock } from './CodeBlock'
 
 interface ExampleCodeProps {
   type: 'basic' | 'hook' | 'nested' | 'standalone'
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  t: any
 }
 
-export const ExampleCodeSnippets: FC<ExampleCodeProps> = ({ type, t }) => {
-  const codes = {
-    basic: `// 1. First, set up Provider in your app root (app.tsx or layout.tsx)
+const codes = {
+  basic: `// 1. First, set up Provider in your app root (app.tsx or layout.tsx)
 import { DialogProvider, DialogRenderer } from 'overlay-kit'
 
 function App() {
@@ -67,7 +33,7 @@ function MyComponent() {
 
   return <button onClick={handleClick}>Open Dialog</button>
 }`,
-    hook: `// 1. First, set up Provider in your app root (app.tsx or layout.tsx)
+  hook: `// 1. First, set up Provider in your app root (app.tsx or layout.tsx)
 import { DialogProvider, DialogRenderer } from 'overlay-kit'
 
 function App() {
@@ -93,7 +59,7 @@ function MyComponent() {
 
   return <button onClick={handleClick}>Open Dialog</button>
 }`,
-    nested: `// 1. First, set up Provider in your app root (app.tsx or layout.tsx)
+  nested: `// 1. First, set up Provider in your app root (app.tsx or layout.tsx)
 import { DialogProvider, DialogRenderer } from 'overlay-kit'
 
 function App() {
@@ -138,7 +104,7 @@ function MyComponent() {
 
   return <button onClick={handleClick}>Open Dialog</button>
 }`,
-    standalone: `// Standalone Dialog doesn't require Provider
+  standalone: `// Standalone Dialog doesn't require Provider
 import { Dialog } from 'overlay-kit'
 import { useState } from 'react'
 
@@ -159,15 +125,14 @@ function MyComponent() {
     </>
   )
 }`,
-  }
+}
 
+export const ExampleCodeSnippets: FC<ExampleCodeProps> = ({ type }) => {
   const code = codes[type]
 
   return (
     <div className="example-code-container">
-      <CodeBlock language="tsx" t={t}>
-        {code}
-      </CodeBlock>
+      <CodeBlock language="tsx">{code}</CodeBlock>
     </div>
   )
 }

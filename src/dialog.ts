@@ -34,21 +34,21 @@ interface DialogOptions {
 
 /**
  * 전역 다이얼로그를 여는 함수
- * 
+ *
  * @param options - 다이얼로그 옵션
  * @returns 다이얼로그 인스턴스의 id와 close 함수를 반환합니다
- * 
+ *
  * @example
  * ```tsx
  * const { close } = dialog({
  *   content: <div>Hello Dialog!</div>,
  *   closeOnOverlayClick: true,
  * })
- * 
+ *
  * // 프로그래밍 방식으로 닫기
  * close()
  * ```
- * 
+ *
  * @throws {Error} DialogProvider가 마운트되지 않은 경우 에러를 발생시킵니다
  */
 export const dialog = (options: DialogOptions) => {
