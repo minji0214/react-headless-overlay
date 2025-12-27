@@ -1,15 +1,15 @@
 {
-  "name": "overlay-kit",
+  "name": "react-headless-overlay",
   "version": "0.1.0",
   "description": "A React library for drawer and dialog components",
   "type": "module",
-  "main": "./dist/overlay-kit.umd.cjs",
-  "module": "./dist/overlay-kit.js",
+  "main": "./dist/react-headless-overlay.umd.cjs",
+  "module": "./dist/react-headless-overlay.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/overlay-kit.js",
-      "require": "./dist/overlay-kit.umd.cjs",
+      "import": "./dist/react-headless-overlay.js",
+      "require": "./dist/react-headless-overlay.umd.cjs",
       "types": "./dist/index.d.ts"
     }
   },
@@ -37,6 +37,14 @@
   ],
   "author": "",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/minji0214/react-headless-overlay.git"
+  },
+  "homepage": "https://github.com/minji0214/react-headless-overlay#readme",
+  "bugs": {
+    "url": "https://github.com/minji0214/react-headless-overlay/issues"
+  },
   "peerDependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
@@ -73,4 +81,3 @@
     ]
   }
 }
-
