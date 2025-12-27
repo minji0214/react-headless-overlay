@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "description": "A React library for drawer and dialog components",
   "type": "module",
-  "main": "./dist/overlay-kit.umd.cjs",
-  "module": "./dist/overlay-kit.js",
+  "main": "./dist/react-headless-overlay.umd.cjs",
+  "module": "./dist/react-headless-overlay.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/overlay-kit.js",
-      "require": "./dist/overlay-kit.umd.cjs",
+      "import": "./dist/react-headless-overlay.js",
+      "require": "./dist/react-headless-overlay.umd.cjs",
       "types": "./dist/index.d.ts"
     }
   },

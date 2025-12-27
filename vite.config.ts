@@ -18,9 +18,9 @@ export default defineConfig(({ command, mode }) => {
       build: {
         lib: {
           entry: resolve(__dirname, 'src/index.ts'),
-          name: 'OverlayKit',
+          name: 'ReactHeadlessOverlay',
           formats: ['es', 'umd'],
-          fileName: (format) => `overlay-kit.${format === 'es' ? 'js' : 'umd.cjs'}`,
+          fileName: (format) => `react-headless-overlay.${format === 'es' ? 'js' : 'umd.cjs'}`,
         },
         rollupOptions: {
           external: ['react', 'react-dom'],

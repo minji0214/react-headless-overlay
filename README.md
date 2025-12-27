@@ -1,4 +1,4 @@
-# Overlay Kit
+# React Headless Overlay
 
 A lightweight, headless React library for drawer and dialog components with SSR support.
 
