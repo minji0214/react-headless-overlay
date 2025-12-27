@@ -1,0 +1,74 @@
+{
+  "name": "overlay-kit",
+  "version": "0.1.0",
+  "description": "A React library for drawer and dialog components",
+  "type": "module",
+  "main": "./dist/overlay-kit.umd.cjs",
+  "module": "./dist/overlay-kit.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/overlay-kit.js",
+      "require": "./dist/overlay-kit.umd.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build --mode lib",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint . --ext ts,tsx --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,json,css,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,json,css,md}\"",
+    "prepare": "husky install",
+    "prepublishOnly": "pnpm run build"
+  },
+  "keywords": [
+    "react",
+    "drawer",
+    "dialog",
+    "modal"
+  ],
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-prettier": "^5.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.1",
+    "prettier-plugin-tailwindcss": "^0.5.9",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8",
+    "vite-plugin-dts": "^3.6.4"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
+  }
+}
+
