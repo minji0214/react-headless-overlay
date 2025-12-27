@@ -39,11 +39,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/minji0214/overlay-kit.git"
+    "url": "https://github.com/minji0214/react-headless-overlay.git"
   },
-  "homepage": "https://github.com/minji0214/overlay-kit#readme",
+  "homepage": "https://github.com/minji0214/react-headless-overlay#readme",
   "bugs": {
-    "url": "https://github.com/minji0214/overlay-kit/issues"
+    "url": "https://github.com/minji0214/react-headless-overlay/issues"
   },
   "peerDependencies": {
     "react": "^18.0.0",

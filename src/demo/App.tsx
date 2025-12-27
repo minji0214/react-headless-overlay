@@ -110,7 +110,7 @@ dialog({
             {t.hero.getStarted}
           </button>
           <a
-            href="https://github.com"
+            href="https://github.com/minji0214/react-headless-overlay"
             target="_blank"
             rel="noopener noreferrer"
             className="hero-btn hero-btn-secondary"
